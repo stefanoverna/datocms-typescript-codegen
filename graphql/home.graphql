@@ -1,30 +1,163 @@
 query Home {
-  _site {
-    favicon: faviconMetaTags {
-      attributes
-      content
-      tag
+  sink {
+    asset {
+      ...fileField
     }
-  }
-  homePage {
-    _seoMetaTags {
-      tag
-      attributes
-      content
+    gallery {
+      ...fileField
     }
-  }
-  allAuthors {
-    name
-    avatar {
-      responsiveImage(imgixParams: { w: 40 }) {
-        alt
-        title
-        base64
-        src
-        srcSet
-        aspectRatio
-        width
+    assetVideo {
+      ...fileField
+    }
+    galleryVideo {
+      ...fileField
+    }
+    boolean
+    color {
+      ...colorField
+    }
+    date
+    datetime
+    id
+    integer
+    json
+    location {
+      latitude
+      longitude
+    }
+    modularContent {
+      ... on RecordInterface {
+        id
       }
     }
+    multipleLinksMany {
+      ... on RecordInterface {
+        id
+      }
+    }
+    multipleLinksOne {
+      ... on AuthorRecord {
+        id
+      }
+    }
+    number
+    seo {
+      ...seoField
+    }
+    single
+    singleLinkMany {
+      ... on RecordInterface {
+        id
+      }
+    }
+    singleLinkOne {
+      id
+    }
+    slug
+    structuredTextMany {
+      value
+      blocks {
+        ... on RecordInterface {
+          id
+        }
+      }
+      links {
+        ... on RecordInterface {
+          id
+        }
+      }
+    }
+    structuredTextOne {
+      value
+      blocks {
+        id
+      }
+      links {
+        id
+      }
+    }
+    text
+    video {
+      ...videoField
+    }
   }
+}
+
+fragment videoField on VideoField {
+  height
+  provider
+  providerUid
+  thumbnailUrl
+  title
+  url
+  width
+}
+
+fragment fileField on FileFieldInterface {
+  alt
+  author
+  basename
+  blurUpThumb
+  blurhash
+  colors {
+    ...colorField
+  }
+  copyright
+  customData
+  exifInfo
+  filename
+  focalPoint {
+    x
+    y
+  }
+  format
+  height
+  id
+  md5
+  mimeType
+  notes
+  responsiveImage {
+    alt
+    aspectRatio
+    base64
+    bgColor
+    height
+    sizes
+    src
+    srcSet
+    title
+    webpSrcSet
+    width
+  }
+  size
+  smartTags
+  tags
+  title
+  url
+  video {
+    duration
+    framerate
+    mp4Url
+    muxAssetId
+    muxPlaybackId
+    streamingUrl
+    thumbnailUrl
+  }
+  width
+}
+
+fragment colorField on ColorField {
+  alpha
+  blue
+  red
+  green
+}
+
+fragment seoField on SeoField {
+  description
+  image {
+    ...fileField
+  }
+  title
+  twitterCard
 }

@@ -9,14 +9,16 @@ generates:
     plugins:
       - typescript
       - typescript-operations:
+          strictScalars: true
           scalars:
-            IntType: number
-            FloatType: number
             BooleanType: boolean
             CustomData: Record<string, unknown>
-            DateTime: string
             Date: string
-            JsonField: Record<string, unknown>
+            DateTime: string
+            FloatType: number
+            IntType: number
+            ItemId: string
+            JsonField: unkown
             MetaTagAttributes: Record<string, string>
             UploadId: string
       - typed-document-node

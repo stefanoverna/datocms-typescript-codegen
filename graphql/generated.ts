@@ -14,6 +14,8 @@ export type Scalars = {
   /** Represents `true` or `false` values. */
   BooleanType: any;
   CustomData: any;
+  /** A ISO 8601 compliant date value */
+  Date: any;
   /** A ISO 8601 compliant datetime value */
   DateTime: any;
   /** Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). */
@@ -27,7 +29,7 @@ export type Scalars = {
 };
 
 /** Record of type About page (about_page) */
-export type AboutPageRecord = {
+export type AboutPageRecord = RecordInterface & {
   __typename?: 'AboutPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -98,7 +100,7 @@ export enum AuthorModelOrderBy {
 }
 
 /** Record of type Author  (author) */
-export type AuthorRecord = {
+export type AuthorRecord = RecordInterface & {
   __typename?: 'AuthorRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -202,7 +204,7 @@ export enum BlogPostModelOrderBy {
 }
 
 /** Record of type Blog Post (blog_post) */
-export type BlogPostRecord = {
+export type BlogPostRecord = RecordInterface & {
   __typename?: 'BlogPostRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -239,7 +241,7 @@ export type BlogPostRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Blog (blog) */
-export type BlogRecord = {
+export type BlogRecord = RecordInterface & {
   __typename?: 'BlogRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -318,7 +320,7 @@ export enum ChangelogCategoryModelOrderBy {
 }
 
 /** Record of type Changelog category (changelog_category) */
-export type ChangelogCategoryRecord = {
+export type ChangelogCategoryRecord = RecordInterface & {
   __typename?: 'ChangelogCategoryRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -403,7 +405,7 @@ export enum ChangelogEntryModelOrderBy {
 }
 
 /** Record of type Changelog entry (changelog_entry) */
-export type ChangelogEntryRecord = {
+export type ChangelogEntryRecord = RecordInterface & {
   __typename?: 'ChangelogEntryRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -434,7 +436,7 @@ export type ChangelogEntryRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Changelog (changelog) */
-export type ChangelogRecord = {
+export type ChangelogRecord = RecordInterface & {
   __typename?: 'ChangelogRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -459,8 +461,35 @@ export type ChangelogRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type Client (client) */
+export type ClientRecord = RecordInterface & {
+  __typename?: 'ClientRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  logo: FileField;
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Block of type Client (client) */
+export type ClientRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Block of type Clone Button Form (clone_button_form) */
-export type CloneButtonFormRecord = {
+export type CloneButtonFormRecord = RecordInterface & {
   __typename?: 'CloneButtonFormRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -499,7 +528,7 @@ export type CodeExcerptBlockModelTitleField = {
 };
 
 /** Block of type Code excerpt block (code_excerpt_block) */
-export type CodeExcerptBlockRecord = {
+export type CodeExcerptBlockRecord = RecordInterface & {
   __typename?: 'CodeExcerptBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -536,7 +565,7 @@ export type CodeExcerptBlockRecordCodeArgs = {
 };
 
 /** Block of type CodeSandbox embed (codesandbox_embed_block) */
-export type CodesandboxEmbedBlockRecord = {
+export type CodesandboxEmbedBlockRecord = RecordInterface & {
   __typename?: 'CodesandboxEmbedBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -644,7 +673,7 @@ export enum ContinentModelOrderBy {
 }
 
 /** Record of type Continent (continent) */
-export type ContinentRecord = {
+export type ContinentRecord = RecordInterface & {
   __typename?: 'ContinentRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -725,7 +754,7 @@ export enum CountryModelOrderBy {
 }
 
 /** Record of type Country (country) */
-export type CountryRecord = {
+export type CountryRecord = RecordInterface & {
   __typename?: 'CountryRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -821,7 +850,7 @@ export enum CustomerModelOrderBy {
 }
 
 /** Record of type Customer (customer) */
-export type CustomerRecord = {
+export type CustomerRecord = RecordInterface & {
   __typename?: 'CustomerRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -848,6 +877,24 @@ export type CustomerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Specifies how to filter Date fields */
+export type DateFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['Date']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['Date']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['Date']>;
+};
+
 /** Specifies how to filter DateTime fields */
 export type DateTimeFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -867,7 +914,7 @@ export type DateTimeFilter = {
 };
 
 /** Block of type Try our Demo (demo) */
-export type DemoRecord = {
+export type DemoRecord = RecordInterface & {
   __typename?: 'DemoRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -893,7 +940,7 @@ export type DemoRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Deploy Button Form (deploy_button_form) */
-export type DeployButtonFormRecord = {
+export type DeployButtonFormRecord = RecordInterface & {
   __typename?: 'DeployButtonFormRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -925,7 +972,7 @@ export type DocCalloutModelTextField = {
 };
 
 /** Block of type Doc Callout (doc_callout) */
-export type DocCalloutRecord = {
+export type DocCalloutRecord = RecordInterface & {
   __typename?: 'DocCalloutRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1003,7 +1050,7 @@ export enum DocGroupModelOrderBy {
 export type DocGroupModelPagesField = DocGroupPageRecord | DocGroupSectionRecord;
 
 /** Block of type Doc Group Page (doc_group_page) */
-export type DocGroupPageRecord = {
+export type DocGroupPageRecord = RecordInterface & {
   __typename?: 'DocGroupPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1031,7 +1078,7 @@ export type DocGroupPageRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Doc group (doc_group) */
-export type DocGroupRecord = {
+export type DocGroupRecord = RecordInterface & {
   __typename?: 'DocGroupRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1062,7 +1109,7 @@ export type DocGroupRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Doc Group Section (doc_group_section) */
-export type DocGroupSectionRecord = {
+export type DocGroupSectionRecord = RecordInterface & {
   __typename?: 'DocGroupSectionRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1145,7 +1192,7 @@ export enum DocPageModelOrderBy {
 }
 
 /** Record of type Doc page (doc_page) */
-export type DocPageRecord = {
+export type DocPageRecord = RecordInterface & {
   __typename?: 'DocPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1175,7 +1222,7 @@ export type DocPageRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Docs Section (docs_page) */
-export type DocsPageRecord = {
+export type DocsPageRecord = RecordInterface & {
   __typename?: 'DocsPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1267,7 +1314,7 @@ export enum EnterpriseAppModelOrderBy {
 }
 
 /** Record of type Enterprise app (enterprise_app) */
-export type EnterpriseAppRecord = {
+export type EnterpriseAppRecord = RecordInterface & {
   __typename?: 'EnterpriseAppRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1345,7 +1392,7 @@ export enum ExpertiseAreaModelOrderBy {
 }
 
 /** Record of type Expertise Area (expertise_area) */
-export type ExpertiseAreaRecord = {
+export type ExpertiseAreaRecord = RecordInterface & {
   __typename?: 'ExpertiseAreaRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1426,7 +1473,7 @@ export enum FaqModelOrderBy {
 }
 
 /** Record of type FAQ (faq) */
-export type FaqRecord = {
+export type FaqRecord = RecordInterface & {
   __typename?: 'FaqRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1506,7 +1553,7 @@ export enum FeatureModelOrderBy {
 }
 
 /** Record of type Feature (feature) */
-export type FeatureRecord = {
+export type FeatureRecord = RecordInterface & {
   __typename?: 'FeatureRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1534,7 +1581,7 @@ export type FeatureRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type FileField = {
+export type FileField = FileFieldInterface & {
   __typename?: 'FileField';
   _createdAt: Scalars['DateTime'];
   _updatedAt: Scalars['DateTime'];
@@ -1610,6 +1657,81 @@ export type FileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
+export type FileFieldInterface = {
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint?: Maybe<FocalPoint>;
+  format: Scalars['String'];
+  height?: Maybe<Scalars['IntType']>;
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage?: Maybe<ResponsiveImage>;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width?: Maybe<Scalars['IntType']>;
+};
+
+
+export type FileFieldInterfaceAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type FileFieldInterfaceCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type FileFieldInterfaceTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
 /** Specifies how to filter Single-file/image fields */
 export type FileFilter = {
   /** Search for records with an exact match. The specified value must be an Upload ID */
@@ -1622,6 +1744,24 @@ export type FileFilter = {
   neq?: InputMaybe<Scalars['UploadId']>;
   /** Filter records that do not have one of the specified uploads */
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+};
+
+/** Specifies how to filter Floating-point fields */
+export type FloatFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['FloatType']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['FloatType']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['FloatType']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['FloatType']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['FloatType']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['FloatType']>;
 };
 
 /** Specifies how to filter Multiple files/images field */
@@ -1648,7 +1788,7 @@ export type GlobalSeoField = {
 };
 
 /** Block of type GraphiQL editor (graphiql_editor) */
-export type GraphiqlEditorRecord = {
+export type GraphiqlEditorRecord = RecordInterface & {
   __typename?: 'GraphiqlEditorRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1680,7 +1820,7 @@ export type GraphiqlEditorRecordQueryArgs = {
 };
 
 /** Block of type GraphQL Demo (graphql_demo_block) */
-export type GraphqlDemoBlockRecord = {
+export type GraphqlDemoBlockRecord = RecordInterface & {
   __typename?: 'GraphqlDemoBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1705,7 +1845,7 @@ export type GraphqlDemoBlockRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Home page (home_page) */
-export type HomePageRecord = {
+export type HomePageRecord = RecordInterface & {
   __typename?: 'HomePageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1798,7 +1938,7 @@ export enum HostingAppModelOrderBy {
 }
 
 /** Record of type Hosting/Building app (hosting_app) */
-export type HostingAppRecord = {
+export type HostingAppRecord = RecordInterface & {
   __typename?: 'HostingAppRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1831,8 +1971,160 @@ export type HostingAppRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type ImageAltTitleFileField = FileFieldInterface & {
+  __typename?: 'ImageAltTitleFileField';
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt: Scalars['String'];
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint: FocalPoint;
+  format: Scalars['String'];
+  height: Scalars['IntType'];
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage: ResponsiveImage;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title: Scalars['String'];
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width: Scalars['IntType'];
+};
+
+
+export type ImageAltTitleFileFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageAltTitleFileFieldBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ImageAltTitleFileFieldCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageAltTitleFileFieldFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageAltTitleFileFieldResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ImageAltTitleFileFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageAltTitleFileFieldUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
+export type ImageFileField = FileFieldInterface & {
+  __typename?: 'ImageFileField';
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint: FocalPoint;
+  format: Scalars['String'];
+  height: Scalars['IntType'];
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage: ResponsiveImage;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width: Scalars['IntType'];
+};
+
+
+export type ImageFileFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageFileFieldBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ImageFileFieldCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageFileFieldFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageFileFieldResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ImageFileFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type ImageFileFieldUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
 /** Block of type Image (image) */
-export type ImageRecord = {
+export type ImageRecord = RecordInterface & {
   __typename?: 'ImageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -1872,7 +2164,7 @@ export type ImageTransformationsBlockModelTitleField = {
 };
 
 /** Block of type Image transformations block (image_transformations_block) */
-export type ImageTransformationsBlockRecord = {
+export type ImageTransformationsBlockRecord = RecordInterface & {
   __typename?: 'ImageTransformationsBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3243,7 +3535,7 @@ export enum ImgixParamsTxtFit {
 }
 
 /** Block of type In-depth CTA block (in_depth_cta_block) */
-export type InDepthCtaBlockRecord = {
+export type InDepthCtaBlockRecord = RecordInterface & {
   __typename?: 'InDepthCtaBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3326,7 +3618,7 @@ export enum InDepthCtaModelOrderBy {
 }
 
 /** Record of type In-depth CTA (in_depth_cta) */
-export type InDepthCtaRecord = {
+export type InDepthCtaRecord = RecordInterface & {
   __typename?: 'InDepthCtaRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3442,7 +3734,7 @@ export enum IntegrationModelOrderBy {
 }
 
 /** Record of type Integration (integration) */
-export type IntegrationRecord = {
+export type IntegrationRecord = RecordInterface & {
   __typename?: 'IntegrationRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3525,7 +3817,7 @@ export enum IntegrationTypeModelOrderBy {
 }
 
 /** Record of type Integration type (integration_type) */
-export type IntegrationTypeRecord = {
+export type IntegrationTypeRecord = RecordInterface & {
   __typename?: 'IntegrationTypeRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3553,7 +3845,7 @@ export type IntegrationTypeRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Integrations page (integrations_page) */
-export type IntegrationsPageRecord = {
+export type IntegrationsPageRecord = RecordInterface & {
   __typename?: 'IntegrationsPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3582,7 +3874,7 @@ export type IntegrationsPageRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Video (internal_video) */
-export type InternalVideoRecord = {
+export type InternalVideoRecord = RecordInterface & {
   __typename?: 'InternalVideoRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3600,7 +3892,7 @@ export type InternalVideoRecord = {
   id: Scalars['ItemId'];
   thumbTimeSeconds?: Maybe<Scalars['IntType']>;
   updatedAt: Scalars['DateTime'];
-  video: FileField;
+  video: VideoFileField;
 };
 
 
@@ -3648,7 +3940,7 @@ export type LandingCdnMapBlockModelTitleField = {
 };
 
 /** Block of type CDN Map (landing_cdn_map_block) */
-export type LandingCdnMapBlockRecord = {
+export type LandingCdnMapBlockRecord = RecordInterface & {
   __typename?: 'LandingCdnMapBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3741,7 +4033,7 @@ export type LandingPageModelTitleField = {
 };
 
 /** Record of type Landing page (landing_page) */
-export type LandingPageRecord = {
+export type LandingPageRecord = RecordInterface & {
   __typename?: 'LandingPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3798,7 +4090,7 @@ export type LandingProgressiveImagesBlockModelTitleField = {
 };
 
 /** Block of type Progressive images (landing_progressive_images_block) */
-export type LandingProgressiveImagesBlockRecord = {
+export type LandingProgressiveImagesBlockRecord = RecordInterface & {
   __typename?: 'LandingProgressiveImagesBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3841,7 +4133,7 @@ export type LandingVideoBlockModelTitleField = {
 };
 
 /** Block of type Landing video block (landing_video_block) */
-export type LandingVideoBlockRecord = {
+export type LandingVideoBlockRecord = RecordInterface & {
   __typename?: 'LandingVideoBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3870,8 +4162,8 @@ export type LandingVideoBlockRecord_SeoMetaTagsArgs = {
 
 export type LatLonField = {
   __typename?: 'LatLonField';
-  latitude?: Maybe<Scalars['FloatType']>;
-  longitude?: Maybe<Scalars['FloatType']>;
+  latitude: Scalars['FloatType'];
+  longitude: Scalars['FloatType'];
 };
 
 /** Specifies how to filter Geolocation fields */
@@ -3931,7 +4223,7 @@ export type ModularBlocksBlockModelTitleField = {
 };
 
 /** Block of type Modular blocks block (modular_blocks_block) */
-export type ModularBlocksBlockRecord = {
+export type ModularBlocksBlockRecord = RecordInterface & {
   __typename?: 'ModularBlocksBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3958,7 +4250,7 @@ export type ModularBlocksBlockRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Multiple demos block (multiple_demos_block) */
-export type MultipleDemosBlockRecord = {
+export type MultipleDemosBlockRecord = RecordInterface & {
   __typename?: 'MultipleDemosBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3998,7 +4290,7 @@ export type OrientationFilter = {
 };
 
 /** Block of type Page link (page_link) */
-export type PageLinkRecord = {
+export type PageLinkRecord = RecordInterface & {
   __typename?: 'PageLinkRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4112,7 +4404,7 @@ export type PartnerQuoteModelQuoteField = {
 };
 
 /** Block of type Partner quote (partner_quote) */
-export type PartnerQuoteRecord = {
+export type PartnerQuoteRecord = RecordInterface & {
   __typename?: 'PartnerQuoteRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4141,7 +4433,7 @@ export type PartnerQuoteRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Partner (partner) */
-export type PartnerRecord = {
+export type PartnerRecord = RecordInterface & {
   __typename?: 'PartnerRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4179,7 +4471,7 @@ export type PartnerRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Partners page (partners_page) */
-export type PartnersPageRecord = {
+export type PartnersPageRecord = RecordInterface & {
   __typename?: 'PartnersPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4274,7 +4566,7 @@ export enum PlanModelOrderBy {
 }
 
 /** Record of type Plan (plan) */
-export type PlanRecord = {
+export type PlanRecord = RecordInterface & {
   __typename?: 'PlanRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4316,7 +4608,7 @@ export type PlanRecordBullets2222Args = {
 };
 
 /** Block of type Plan value (plan_value) */
-export type PlanValueRecord = {
+export type PlanValueRecord = RecordInterface & {
   __typename?: 'PlanValueRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4389,7 +4681,7 @@ export enum PluginAuthorModelOrderBy {
 }
 
 /** Record of type Plugin Author (plugin_author) */
-export type PluginAuthorRecord = {
+export type PluginAuthorRecord = RecordInterface & {
   __typename?: 'PluginAuthorRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4416,7 +4708,7 @@ export type PluginAuthorRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Plugin Collection (plugin_collection) */
-export type PluginCollectionRecord = {
+export type PluginCollectionRecord = RecordInterface & {
   __typename?: 'PluginCollectionRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4489,7 +4781,7 @@ export enum PluginFieldTypeModelOrderBy {
 }
 
 /** Record of type Plugin field type (plugin_field_type) */
-export type PluginFieldTypeRecord = {
+export type PluginFieldTypeRecord = RecordInterface & {
   __typename?: 'PluginFieldTypeRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4600,7 +4892,7 @@ export enum PluginModelOrderBy {
 }
 
 /** Record of type Plugin (plugin) */
-export type PluginRecord = {
+export type PluginRecord = RecordInterface & {
   __typename?: 'PluginRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4616,7 +4908,7 @@ export type PluginRecord = {
   author: PluginAuthorRecord;
   coverImage?: Maybe<FileField>;
   createdAt: Scalars['DateTime'];
-  description?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
   entryPoint: Scalars['String'];
   fieldTypes: Array<PluginFieldTypeRecord>;
   homepage?: Maybe<Scalars['String']>;
@@ -4659,7 +4951,7 @@ export type PluginRecordReadmeArgs = {
 };
 
 /** Block of type Plugin SDK Hook Group (plugin_sdk_hook_group) */
-export type PluginSdkHookGroupRecord = {
+export type PluginSdkHookGroupRecord = RecordInterface & {
   __typename?: 'PluginSdkHookGroupRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4728,7 +5020,7 @@ export enum PluginTagModelOrderBy {
 }
 
 /** Record of type Plugin tag (plugin_tag) */
-export type PluginTagRecord = {
+export type PluginTagRecord = RecordInterface & {
   __typename?: 'PluginTagRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4800,7 +5092,7 @@ export enum PluginTypeModelOrderBy {
 }
 
 /** Record of type Plugin type (plugin_type) */
-export type PluginTypeRecord = {
+export type PluginTypeRecord = RecordInterface & {
   __typename?: 'PluginTypeRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4827,7 +5119,7 @@ export type PluginTypeRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Plugins page (plugins_page) */
-export type PluginsPageRecord = {
+export type PluginsPageRecord = RecordInterface & {
   __typename?: 'PluginsPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4923,7 +5215,7 @@ export enum PricingHintModelOrderBy {
 }
 
 /** Record of type Pricing hint (pricing_hint) */
-export type PricingHintRecord = {
+export type PricingHintRecord = RecordInterface & {
   __typename?: 'PricingHintRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -4953,7 +5245,7 @@ export type PricingHintRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Pricing page (pricing_page) */
-export type PricingPageRecord = {
+export type PricingPageRecord = RecordInterface & {
   __typename?: 'PricingPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -5034,7 +5326,7 @@ export enum ProductAnnouncementModelOrderBy {
 }
 
 /** Record of type Product announcement (product_announcement) */
-export type ProductAnnouncementRecord = {
+export type ProductAnnouncementRecord = RecordInterface & {
   __typename?: 'ProductAnnouncementRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -5146,6 +5438,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allShowcaseProjectsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSinksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSuccessStoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSuccessStoryTagsMeta: CollectionMetadata;
@@ -5231,6 +5525,8 @@ export type Query = {
   allSchemaMigrations: Array<SchemaMigrationRecord>;
   /** Returns a collection of records */
   allShowcaseProjects: Array<ShowcaseProjectRecord>;
+  /** Returns a collection of records */
+  allSinks: Array<SinkRecord>;
   /** Returns a collection of records */
   allSuccessStories: Array<SuccessStoryRecord>;
   /** Returns a collection of records */
@@ -5329,6 +5625,8 @@ export type Query = {
   schemaMigration?: Maybe<SchemaMigrationRecord>;
   /** Returns a specific record */
   showcaseProject?: Maybe<ShowcaseProjectRecord>;
+  /** Returns a specific record */
+  sink?: Maybe<SinkRecord>;
   /** Returns a specific record */
   successStory?: Maybe<SuccessStoryRecord>;
   /** Returns a specific record */
@@ -5592,6 +5890,14 @@ export type Query_AllSchemaMigrationsMetaArgs = {
 export type Query_AllShowcaseProjectsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ShowcaseProjectModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllSinksMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SinkModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -6023,6 +6329,17 @@ export type QueryAllShowcaseProjectsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ShowcaseProjectModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllSinksArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SinkModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SinkModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -6475,6 +6792,15 @@ export type QueryShowcaseProjectArgs = {
 
 
 /** The query root for this schema */
+export type QuerySinkArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SinkModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
 export type QuerySuccessStoryArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SuccessStoryModelFilter>;
@@ -6594,7 +6920,7 @@ export type QuestionAnswerModelQuestionField = {
 };
 
 /** Block of type Question/answer (question_answer) */
-export type QuestionAnswerRecord = {
+export type QuestionAnswerRecord = RecordInterface & {
   __typename?: 'QuestionAnswerRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6621,7 +6947,7 @@ export type QuestionAnswerRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Quote Link (quote_link) */
-export type QuoteLinkRecord = {
+export type QuoteLinkRecord = RecordInterface & {
   __typename?: 'QuoteLinkRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6647,7 +6973,7 @@ export type QuoteLinkRecord_SeoMetaTagsArgs = {
 };
 
 /** Block of type Quote (quote) */
-export type QuoteRecord = {
+export type QuoteRecord = RecordInterface & {
   __typename?: 'QuoteRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6680,7 +7006,7 @@ export type QuoteRecordQuoteArgs = {
 };
 
 /** Block of type React UI Live Example (react_ui_live_example) */
-export type ReactUiLiveExampleRecord = {
+export type ReactUiLiveExampleRecord = RecordInterface & {
   __typename?: 'ReactUiLiveExampleRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6702,6 +7028,26 @@ export type ReactUiLiveExampleRecord = {
 
 /** Block of type React UI Live Example (react_ui_live_example) */
 export type ReactUiLiveExampleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type RecordInterface = {
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+};
+
+
+export type RecordInterface_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -6804,7 +7150,7 @@ export type ReviewModelQuoteField = {
 };
 
 /** Record of type Review (review) */
-export type ReviewRecord = {
+export type ReviewRecord = RecordInterface & {
   __typename?: 'ReviewRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6879,7 +7225,7 @@ export enum SchemaMigrationModelOrderBy {
 }
 
 /** Record of type Schema migration (schema_migration) */
-export type SchemaMigrationRecord = {
+export type SchemaMigrationRecord = RecordInterface & {
   __typename?: 'SchemaMigrationRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -6992,7 +7338,7 @@ export enum ShowcaseProjectModelOrderBy {
 }
 
 /** Record of type Project for the showcase (showcase_project) */
-export type ShowcaseProjectRecord = {
+export type ShowcaseProjectRecord = RecordInterface & {
   __typename?: 'ShowcaseProjectRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7007,7 +7353,7 @@ export type ShowcaseProjectRecord = {
   _updatedAt: Scalars['DateTime'];
   areasOfExpertise: Array<ExpertiseAreaRecord>;
   createdAt: Scalars['DateTime'];
-  datocmsScreenshots: Array<FileField>;
+  datocmsScreenshots: Array<TitleFileField>;
   headline: ShowcaseProjectModelHeadlineField;
   id: Scalars['ItemId'];
   inDepthExplanation: ShowcaseProjectModelInDepthExplanationField;
@@ -7015,18 +7361,172 @@ export type ShowcaseProjectRecord = {
   name: Scalars['String'];
   partner: PartnerRecord;
   position?: Maybe<Scalars['IntType']>;
-  projectScreenshots: Array<FileField>;
+  projectScreenshots: Array<TitleFileField>;
   projectUrl?: Maybe<Scalars['String']>;
   slug: Scalars['String'];
   technologies: Array<IntegrationRecord>;
   updatedAt: Scalars['DateTime'];
-  video?: Maybe<FileField>;
+  video?: Maybe<VideoFileField>;
 };
 
 
 /** Record of type Project for the showcase (showcase_project) */
 export type ShowcaseProjectRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+export type SinkModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<SinkModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  asset?: InputMaybe<FileFilter>;
+  assetVideo?: InputMaybe<FileFilter>;
+  boolean?: InputMaybe<BooleanFilter>;
+  color?: InputMaybe<ColorFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  date?: InputMaybe<DateFilter>;
+  datetime?: InputMaybe<DateTimeFilter>;
+  gallery?: InputMaybe<GalleryFilter>;
+  galleryVideo?: InputMaybe<GalleryFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  integer?: InputMaybe<IntegerFilter>;
+  json?: InputMaybe<JsonFilter>;
+  location?: InputMaybe<LatLonFilter>;
+  multipleLinksMany?: InputMaybe<LinksFilter>;
+  multipleLinksOne?: InputMaybe<LinksFilter>;
+  number?: InputMaybe<FloatFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  single?: InputMaybe<StringFilter>;
+  singleLinkMany?: InputMaybe<LinkFilter>;
+  singleLinkOne?: InputMaybe<LinkFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  structuredTextMany?: InputMaybe<StructuredTextFilter>;
+  structuredTextOne?: InputMaybe<StructuredTextFilter>;
+  text?: InputMaybe<TextFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+  video?: InputMaybe<VideoFilter>;
+};
+
+export type SinkModelModularContentField = CloneButtonFormRecord | CodesandboxEmbedBlockRecord;
+
+export type SinkModelMultipleLinksManyField = AuthorRecord | BlogPostRecord;
+
+export enum SinkModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  BooleanAsc = 'boolean_ASC',
+  BooleanDesc = 'boolean_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
+  DatetimeAsc = 'datetime_ASC',
+  DatetimeDesc = 'datetime_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IntegerAsc = 'integer_ASC',
+  IntegerDesc = 'integer_DESC',
+  NumberAsc = 'number_ASC',
+  NumberDesc = 'number_DESC',
+  SingleAsc = 'single_ASC',
+  SingleDesc = 'single_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type SinkModelSingleLinkManyField = AuthorRecord | BlogPostRecord;
+
+export type SinkModelStructuredTextManyBlocksField = DocCalloutRecord | DocGroupPageRecord;
+
+export type SinkModelStructuredTextManyField = {
+  __typename?: 'SinkModelStructuredTextManyField';
+  blocks: Array<SinkModelStructuredTextManyBlocksField>;
+  links: Array<SinkModelStructuredTextManyLinksField>;
+  value: Scalars['JsonField'];
+};
+
+export type SinkModelStructuredTextManyLinksField = AuthorRecord | BlogPostRecord;
+
+export type SinkModelStructuredTextOneField = {
+  __typename?: 'SinkModelStructuredTextOneField';
+  blocks: Array<ClientRecord>;
+  links: Array<BlogPostRecord>;
+  value: Scalars['JsonField'];
+};
+
+/** Record of type Sink (sink) */
+export type SinkRecord = RecordInterface & {
+  __typename?: 'SinkRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  asset: ImageAltTitleFileField;
+  assetVideo: VideoFileField;
+  boolean?: Maybe<Scalars['BooleanType']>;
+  color: ColorField;
+  createdAt: Scalars['DateTime'];
+  date: Scalars['Date'];
+  datetime: Scalars['DateTime'];
+  gallery: Array<ImageFileField>;
+  galleryVideo: Array<VideoFileField>;
+  id: Scalars['ItemId'];
+  integer: Scalars['IntType'];
+  json: Scalars['JsonField'];
+  location: LatLonField;
+  modularContent: Array<SinkModelModularContentField>;
+  multipleLinksMany: Array<SinkModelMultipleLinksManyField>;
+  multipleLinksOne: Array<AuthorRecord>;
+  number: Scalars['FloatType'];
+  seo?: Maybe<SeoField>;
+  single: Scalars['String'];
+  singleLinkMany: SinkModelSingleLinkManyField;
+  singleLinkOne: BlogPostRecord;
+  slug: Scalars['String'];
+  structuredTextMany: SinkModelStructuredTextManyField;
+  structuredTextOne: SinkModelStructuredTextOneField;
+  text: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  video: VideoField;
+};
+
+
+/** Record of type Sink (sink) */
+export type SinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Sink (sink) */
+export type SinkRecordTextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Site = {
@@ -7200,7 +7700,7 @@ export type SuccessStoryModelTitleField = {
 };
 
 /** Block of type Number (success_story_number) */
-export type SuccessStoryNumberRecord = {
+export type SuccessStoryNumberRecord = RecordInterface & {
   __typename?: 'SuccessStoryNumberRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7227,7 +7727,7 @@ export type SuccessStoryNumberRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type Success story (success_story) */
-export type SuccessStoryRecord = {
+export type SuccessStoryRecord = RecordInterface & {
   __typename?: 'SuccessStoryRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7274,7 +7774,7 @@ export type SuccessStoryResultModelDescriptionField = {
 };
 
 /** Block of type Result (success_story_result) */
-export type SuccessStoryResultRecord = {
+export type SuccessStoryResultRecord = RecordInterface & {
   __typename?: 'SuccessStoryResultRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7345,7 +7845,7 @@ export enum SuccessStoryTagModelOrderBy {
 }
 
 /** Record of type Success story tag (success_story_tag) */
-export type SuccessStoryTagRecord = {
+export type SuccessStoryTagRecord = RecordInterface & {
   __typename?: 'SuccessStoryTagRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7440,7 +7940,7 @@ export enum SupportTopicModelOrderBy {
 }
 
 /** Record of type Support topic (support_topic) */
-export type SupportTopicRecord = {
+export type SupportTopicRecord = RecordInterface & {
   __typename?: 'SupportTopicRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7536,7 +8036,7 @@ export enum TeamMemberModelOrderBy {
 }
 
 /** Record of type Team member (team_member) */
-export type TeamMemberRecord = {
+export type TeamMemberRecord = RecordInterface & {
   __typename?: 'TeamMemberRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7612,7 +8112,7 @@ export enum TeamPageModelOrderBy {
 }
 
 /** Record of type Team page (team_page) */
-export type TeamPageRecord = {
+export type TeamPageRecord = RecordInterface & {
   __typename?: 'TeamPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7701,7 +8201,7 @@ export enum TemplateDemoModelOrderBy {
 }
 
 /** Record of type Template Demo (template_demo) */
-export type TemplateDemoRecord = {
+export type TemplateDemoRecord = RecordInterface & {
   __typename?: 'TemplateDemoRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7762,7 +8262,7 @@ export type TextFilter = {
 };
 
 /** Block of type Text (text) */
-export type TextRecord = {
+export type TextRecord = RecordInterface & {
   __typename?: 'TextRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7793,6 +8293,82 @@ export type TextRecordTextArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type TitleFileField = FileFieldInterface & {
+  __typename?: 'TitleFileField';
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint?: Maybe<FocalPoint>;
+  format: Scalars['String'];
+  height?: Maybe<Scalars['IntType']>;
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage?: Maybe<ResponsiveImage>;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title: Scalars['String'];
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width?: Maybe<Scalars['IntType']>;
+};
+
+
+export type TitleFileFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type TitleFileFieldBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type TitleFileFieldCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type TitleFileFieldFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type TitleFileFieldResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TitleFileFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type TitleFileFieldUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
 export type TryDemoBlockModelContentField = {
   __typename?: 'TryDemoBlockModelContentField';
   blocks: Array<Scalars['String']>;
@@ -7808,7 +8384,7 @@ export type TryDemoBlockModelTitleField = {
 };
 
 /** Block of type Try demo block (try_demo_block) */
-export type TryDemoBlockRecord = {
+export type TryDemoBlockRecord = RecordInterface & {
   __typename?: 'TryDemoBlockRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7892,7 +8468,7 @@ export enum TutorialModelOrderBy {
 }
 
 /** Record of type Tutorial (tutorial) */
-export type TutorialRecord = {
+export type TutorialRecord = RecordInterface & {
   __typename?: 'TutorialRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -7933,7 +8509,7 @@ export type TypeFilter = {
 };
 
 /** Block of type Typeform (typeform) */
-export type TypeformRecord = {
+export type TypeformRecord = RecordInterface & {
   __typename?: 'TypeformRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8269,8 +8845,8 @@ export type UploadUpdatedAtFilter = {
 
 export type UploadVideoField = {
   __typename?: 'UploadVideoField';
-  duration: Scalars['Int'];
-  framerate: Scalars['Int'];
+  duration?: Maybe<Scalars['Int']>;
+  framerate?: Maybe<Scalars['Int']>;
   mp4Url?: Maybe<Scalars['String']>;
   muxAssetId: Scalars['String'];
   muxPlaybackId: Scalars['String'];
@@ -8306,7 +8882,7 @@ export type UploadWidthFilter = {
 };
 
 /** Record of type Use cases page (use_cases_page) */
-export type UseCasesPageRecord = {
+export type UseCasesPageRecord = RecordInterface & {
   __typename?: 'UseCasesPageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8334,13 +8910,95 @@ export type UseCasesPageRecord_SeoMetaTagsArgs = {
 
 export type VideoField = {
   __typename?: 'VideoField';
+  height: Scalars['IntType'];
+  provider: Scalars['String'];
+  providerUid: Scalars['String'];
+  thumbnailUrl: Scalars['String'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+  width: Scalars['IntType'];
+};
+
+export type VideoFileField = FileFieldInterface & {
+  __typename?: 'VideoFileField';
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint?: Maybe<FocalPoint>;
+  format: Scalars['String'];
   height?: Maybe<Scalars['IntType']>;
-  provider?: Maybe<Scalars['String']>;
-  providerUid?: Maybe<Scalars['String']>;
-  thumbnailUrl?: Maybe<Scalars['String']>;
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage?: Maybe<ResponsiveImage>;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  video: UploadVideoField;
   width?: Maybe<Scalars['IntType']>;
+};
+
+
+export type VideoFileFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type VideoFileFieldBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type VideoFileFieldCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type VideoFileFieldFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type VideoFileFieldResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type VideoFileFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type VideoFileFieldUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
+/** Specifies how to filter Video fields */
+export type VideoFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
 };
 
 export enum VideoMp4Res {
@@ -8350,7 +9008,7 @@ export enum VideoMp4Res {
 }
 
 /** Block of type YouTube/Vimeo embed (video) */
-export type VideoRecord = {
+export type VideoRecord = RecordInterface & {
   __typename?: 'VideoRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8439,7 +9097,7 @@ export enum WebinarModelOrderBy {
 }
 
 /** Record of type Webinar (webinar) */
-export type WebinarRecord = {
+export type WebinarRecord = RecordInterface & {
   __typename?: 'WebinarRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8529,7 +9187,7 @@ export enum WebinarSpeakerModelOrderBy {
 }
 
 /** Record of type Speaker (webinar_speaker) */
-export type WebinarSpeakerRecord = {
+export type WebinarSpeakerRecord = RecordInterface & {
   __typename?: 'WebinarSpeakerRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8613,7 +9271,7 @@ export enum WebsiteModelOrderBy {
 }
 
 /** Record of type Website (website) */
-export type WebsiteRecord = {
+export type WebsiteRecord = RecordInterface & {
   __typename?: 'WebsiteRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -8645,14 +9303,35 @@ export type WebsiteRecord_SeoMetaTagsArgs = {
 
 export type FocalPoint = {
   __typename?: 'focalPoint';
-  x?: Maybe<Scalars['FloatType']>;
-  y?: Maybe<Scalars['FloatType']>;
+  x: Scalars['FloatType'];
+  y: Scalars['FloatType'];
 };
 
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { __typename?: 'Query', _site: { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: Record<string, string> | null, content?: string | null, tag: string }> }, homePage?: { __typename?: 'HomePageRecord', _seoMetaTags: Array<{ __typename?: 'Tag', tag: string, attributes?: Record<string, string> | null, content?: string | null }> } | null, allAuthors: Array<{ __typename?: 'AuthorRecord', name: string, avatar: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, title?: string | null, base64?: string | null, src: string, srcSet: string, aspectRatio: number, width: number } | null } }> };
+export type HomeQuery = { __typename?: 'Query', sink?: { __typename?: 'SinkRecord', boolean?: boolean | null, date: string, datetime: string, id: string, integer: number, json: unkown, number: number, single: string, slug: string, text: string, asset: { __typename?: 'ImageAltTitleFileField', alt: string, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null }, gallery: Array<{ __typename?: 'ImageFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null }>, assetVideo: { __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } }, galleryVideo: Array<{ __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } }>, color: { __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }, location: { __typename?: 'LatLonField', latitude: number, longitude: number }, modularContent: Array<{ __typename?: 'CloneButtonFormRecord', id: string } | { __typename?: 'CodesandboxEmbedBlockRecord', id: string }>, multipleLinksMany: Array<{ __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }>, multipleLinksOne: Array<{ __typename?: 'AuthorRecord', id: string }>, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null } | null } | null, singleLinkMany: { __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }, singleLinkOne: { __typename?: 'BlogPostRecord', id: string }, structuredTextMany: { __typename?: 'SinkModelStructuredTextManyField', value: unkown, blocks: Array<{ __typename?: 'DocCalloutRecord', id: string } | { __typename?: 'DocGroupPageRecord', id: string }>, links: Array<{ __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }> }, structuredTextOne: { __typename?: 'SinkModelStructuredTextOneField', value: unkown, blocks: Array<{ __typename?: 'ClientRecord', id: string }>, links: Array<{ __typename?: 'BlogPostRecord', id: string }> }, video: { __typename?: 'VideoField', height: number, provider: string, providerUid: string, thumbnailUrl: string, title: string, url: string, width: number } } | null };
 
+export type VideoFieldFragment = { __typename?: 'VideoField', height: number, provider: string, providerUid: string, thumbnailUrl: string, title: string, url: string, width: number };
 
-export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_site"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"favicon"},"name":{"kind":"Name","value":"faviconMetaTags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tag"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_seoMetaTags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tag"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"allAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"40"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
+type FileField_FileField_Fragment = { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+
+type FileField_ImageAltTitleFileField_Fragment = { __typename?: 'ImageAltTitleFileField', alt: string, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+
+type FileField_ImageFileField_Fragment = { __typename?: 'ImageFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+
+type FileField_TitleFileField_Fragment = { __typename?: 'TitleFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+
+type FileField_VideoFileField_Fragment = { __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } };
+
+export type FileFieldFragment = FileField_FileField_Fragment | FileField_ImageAltTitleFileField_Fragment | FileField_ImageFileField_Fragment | FileField_TitleFileField_Fragment | FileField_VideoFileField_Fragment;
+
+export type ColorFieldFragment = { __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number };
+
+export type SeoFieldFragment = { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null } | null };
+
+export const VideoFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"videoField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"provider"}},{"kind":"Field","name":{"kind":"Name","value":"providerUid"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailUrl"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]} as unknown as DocumentNode<VideoFieldFragment, unknown>;
+export const ColorFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"colorField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ColorField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alpha"}},{"kind":"Field","name":{"kind":"Name","value":"blue"}},{"kind":"Field","name":{"kind":"Name","value":"red"}},{"kind":"Field","name":{"kind":"Name","value":"green"}}]}}]} as unknown as DocumentNode<ColorFieldFragment, unknown>;
+export const FileFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"fileField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FileFieldInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"basename"}},{"kind":"Field","name":{"kind":"Name","value":"blurUpThumb"}},{"kind":"Field","name":{"kind":"Name","value":"blurhash"}},{"kind":"Field","name":{"kind":"Name","value":"colors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"colorField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"customData"}},{"kind":"Field","name":{"kind":"Name","value":"exifInfo"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"focalPoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"x"}},{"kind":"Field","name":{"kind":"Name","value":"y"}}]}},{"kind":"Field","name":{"kind":"Name","value":"format"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"md5"}},{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"notes"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"smartTags"}},{"kind":"Field","name":{"kind":"Name","value":"tags"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"framerate"}},{"kind":"Field","name":{"kind":"Name","value":"mp4Url"}},{"kind":"Field","name":{"kind":"Name","value":"muxAssetId"}},{"kind":"Field","name":{"kind":"Name","value":"muxPlaybackId"}},{"kind":"Field","name":{"kind":"Name","value":"streamingUrl"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},...ColorFieldFragmentDoc.definitions]} as unknown as DocumentNode<FileFieldFragment, unknown>;
+export const SeoFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"seoField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SeoField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"twitterCard"}}]}},...FileFieldFragmentDoc.definitions]} as unknown as DocumentNode<SeoFieldFragment, unknown>;
+export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"asset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"assetVideo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"galleryVideo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"boolean"}},{"kind":"Field","name":{"kind":"Name","value":"color"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"colorField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"datetime"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"integer"}},{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"latitude"}},{"kind":"Field","name":{"kind":"Name","value":"longitude"}}]}},{"kind":"Field","name":{"kind":"Name","value":"modularContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multipleLinksMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multipleLinksOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"AuthorRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"seoField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"single"}},{"kind":"Field","name":{"kind":"Name","value":"singleLinkMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"singleLinkOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"structuredTextMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"structuredTextOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"videoField"}}]}}]}}]}},...FileFieldFragmentDoc.definitions,...ColorFieldFragmentDoc.definitions,...SeoFieldFragmentDoc.definitions,...VideoFieldFragmentDoc.definitions]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
