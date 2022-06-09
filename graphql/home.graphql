@@ -1,0 +1,30 @@
+query Home {
+  _site {
+    favicon: faviconMetaTags {
+      attributes
+      content
+      tag
+    }
+  }
+  homePage {
+    _seoMetaTags {
+      tag
+      attributes
+      content
+    }
+  }
+  allAuthors {
+    name
+    avatar {
+      responsiveImage(imgixParams: { w: 40 }) {
+        alt
+        title
+        base64
+        src
+        srcSet
+        aspectRatio
+        width
+      }
+    }
+  }
+}
