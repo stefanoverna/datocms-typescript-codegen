@@ -1,122 +1,15 @@
 query Home {
-  sink {
-    asset {
-      ...fileField
-    }
-    gallery {
-      ...fileField
-    }
-    assetVideo {
-      ...fileField
-    }
-    galleryVideo {
-      ...fileField
-    }
-    boolean
-    color {
-      ...colorField
-    }
-    date
-    datetime
+  allAuthors {
     id
-    integer
-    json
-    location {
-      latitude
-      longitude
-    }
-    modularContent {
-      ... on RecordInterface {
-        id
-      }
-    }
-    multipleLinksMany {
-      ... on RecordInterface {
-        id
-      }
-    }
-    multipleLinksOne {
-      ... on AuthorRecord {
-        id
-      }
-    }
-    number
-    seo {
-      ...seoField
-    }
-    single
-    singleLinkMany {
-      ... on RecordInterface {
-        id
-      }
-    }
-    singleLinkOne {
-      id
-    }
-    slug
-    structuredTextMany {
-      value
-      blocks {
-        ... on RecordInterface {
-          id
-        }
-      }
-      links {
-        ... on RecordInterface {
-          id
-        }
-      }
-    }
-    structuredTextOne {
-      value
-      blocks {
-        id
-      }
-      links {
-        id
-      }
-    }
-    text
-    video {
-      ...videoField
+    name
+    avatar {
+      ...responsiveImage
     }
   }
 }
 
-fragment videoField on VideoField {
-  height
-  provider
-  providerUid
-  thumbnailUrl
-  title
-  url
-  width
-}
-
-fragment fileField on FileFieldInterface {
-  alt
-  author
-  basename
-  blurUpThumb
-  blurhash
-  colors {
-    ...colorField
-  }
-  copyright
-  customData
-  exifInfo
-  filename
-  focalPoint {
-    x
-    y
-  }
-  format
-  height
-  id
-  md5
-  mimeType
-  notes
-  responsiveImage {
+fragment responsiveImage on FileFieldInterface {
+  responsiveImage(imgixParams: { w: 100, h: 100, fit: crop }) {
     alt
     aspectRatio
     base64
@@ -129,35 +22,4 @@ fragment fileField on FileFieldInterface {
     webpSrcSet
     width
   }
-  size
-  smartTags
-  tags
-  title
-  url
-  video {
-    duration
-    framerate
-    mp4Url
-    muxAssetId
-    muxPlaybackId
-    streamingUrl
-    thumbnailUrl
-  }
-  width
-}
-
-fragment colorField on ColorField {
-  alpha
-  blue
-  red
-  green
-}
-
-fragment seoField on SeoField {
-  description
-  image {
-    ...fileField
-  }
-  title
-  twitterCard
 }

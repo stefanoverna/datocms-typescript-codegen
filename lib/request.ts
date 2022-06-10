@@ -7,7 +7,7 @@ export function request<TDocument = any, TVariables = Record<string, any>>(
   variables?: TVariables,
 ) {
   return graphqlRequest<TDocument, TVariables>(
-    'http://graphql.lvh.me:3001/',
+    'https://graphql.datocms.com/',
     document,
     variables,
     {

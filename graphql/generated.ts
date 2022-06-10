@@ -14,8 +14,6 @@ export type Scalars = {
   /** Represents `true` or `false` values. */
   BooleanType: any;
   CustomData: any;
-  /** A ISO 8601 compliant date value */
-  Date: any;
   /** A ISO 8601 compliant datetime value */
   DateTime: any;
   /** Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). */
@@ -113,7 +111,7 @@ export type AuthorRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  avatar: FileField;
+  avatar: ImageFileField;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   name: Scalars['String'];
@@ -127,7 +125,7 @@ export type AuthorRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type BlogPostModelContentBlocksField = CodesandboxEmbedBlockRecord | DemoRecord | ImageRecord | InternalVideoRecord | MultipleDemosBlockRecord | QuestionAnswerRecord | TypeformRecord | VideoRecord;
+export type BlogPostModelContentBlocksField = CodesandboxEmbedBlockRecord | CtaButtonRecord | DemoRecord | ImageRecord | InternalVideoRecord | MultipleDemosBlockRecord | QuestionAnswerRecord | TypeformRecord | VideoRecord;
 
 export type BlogPostModelContentField = {
   __typename?: 'BlogPostModelContentField';
@@ -162,7 +160,6 @@ export type BlogPostModelFilter = {
   createdAt?: InputMaybe<CreatedAtFilter>;
   excerpt?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  notes?: InputMaybe<JsonFilter>;
   preview?: InputMaybe<JsonFilter>;
   seoH1?: InputMaybe<StringFilter>;
   seoSettings?: InputMaybe<SeoFilter>;
@@ -224,7 +221,6 @@ export type BlogPostRecord = RecordInterface & {
   createdAt: Scalars['DateTime'];
   excerpt: BlogPostModelExcerptField;
   id: Scalars['ItemId'];
-  notes?: Maybe<Scalars['JsonField']>;
   preview?: Maybe<Scalars['JsonField']>;
   seoH1?: Maybe<Scalars['String']>;
   seoSettings?: Maybe<SeoField>;
@@ -458,33 +454,6 @@ export type ChangelogRecord = RecordInterface & {
 
 /** Record of type Changelog (changelog) */
 export type ChangelogRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Block of type Client (client) */
-export type ClientRecord = RecordInterface & {
-  __typename?: 'ClientRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ItemId'];
-  logo: FileField;
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-
-/** Block of type Client (client) */
-export type ClientRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -802,6 +771,33 @@ export type CreatedAtFilter = {
   neq?: InputMaybe<Scalars['DateTime']>;
 };
 
+/** Block of type CTA Button (cta_button) */
+export type CtaButtonRecord = RecordInterface & {
+  __typename?: 'CtaButtonRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  text: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+
+/** Block of type CTA Button (cta_button) */
+export type CtaButtonRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type CustomerModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<CustomerModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -875,24 +871,6 @@ export type CustomerRecord = RecordInterface & {
 /** Record of type Customer (customer) */
 export type CustomerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
-};
-
-/** Specifies how to filter Date fields */
-export type DateFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['Date']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['Date']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['Date']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['Date']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['Date']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['Date']>;
 };
 
 /** Specifies how to filter DateTime fields */
@@ -1135,7 +1113,7 @@ export type DocGroupSectionRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type DocPageModelContentBlocksField = CloneButtonFormRecord | DemoRecord | DeployButtonFormRecord | DocCalloutRecord | GraphiqlEditorRecord | ImageRecord | InternalVideoRecord | MultipleDemosBlockRecord | PluginSdkHookGroupRecord | ReactUiLiveExampleRecord | VideoRecord;
+export type DocPageModelContentBlocksField = CloneButtonFormRecord | DemoRecord | DeployButtonFormRecord | DocCalloutRecord | GraphiqlEditorRecord | ImageRecord | InternalVideoRecord | MultipleDemosBlockRecord | PluginSdkHookGroupRecord | ReactUiLiveExampleRecord | TutorialVideoRecord | VideoRecord;
 
 export type DocPageModelContentField = {
   __typename?: 'DocPageModelContentField';
@@ -1746,24 +1724,6 @@ export type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
 };
 
-/** Specifies how to filter Floating-point fields */
-export type FloatFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['FloatType']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['FloatType']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['FloatType']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['FloatType']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['FloatType']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['FloatType']>;
-};
-
 /** Specifies how to filter Multiple files/images field */
 export type GalleryFilter = {
   /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
@@ -1969,82 +1929,6 @@ export type HostingAppRecord = RecordInterface & {
 /** Record of type Hosting/Building app (hosting_app) */
 export type HostingAppRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
-};
-
-export type ImageAltTitleFileField = FileFieldInterface & {
-  __typename?: 'ImageAltTitleFileField';
-  _createdAt: Scalars['DateTime'];
-  _updatedAt: Scalars['DateTime'];
-  alt: Scalars['String'];
-  author?: Maybe<Scalars['String']>;
-  basename: Scalars['String'];
-  blurUpThumb?: Maybe<Scalars['String']>;
-  blurhash?: Maybe<Scalars['String']>;
-  colors: Array<ColorField>;
-  copyright?: Maybe<Scalars['String']>;
-  customData: Scalars['CustomData'];
-  exifInfo: Scalars['CustomData'];
-  filename: Scalars['String'];
-  focalPoint: FocalPoint;
-  format: Scalars['String'];
-  height: Scalars['IntType'];
-  id: Scalars['UploadId'];
-  md5: Scalars['String'];
-  mimeType: Scalars['String'];
-  notes?: Maybe<Scalars['String']>;
-  responsiveImage: ResponsiveImage;
-  size: Scalars['IntType'];
-  smartTags: Array<Scalars['String']>;
-  tags: Array<Scalars['String']>;
-  title: Scalars['String'];
-  url: Scalars['String'];
-  video?: Maybe<UploadVideoField>;
-  width: Scalars['IntType'];
-};
-
-
-export type ImageAltTitleFileFieldAltArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-export type ImageAltTitleFileFieldBlurUpThumbArgs = {
-  imgixParams?: InputMaybe<ImgixParams>;
-  punch?: InputMaybe<Scalars['Float']>;
-  quality?: InputMaybe<Scalars['Int']>;
-  size?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type ImageAltTitleFileFieldCustomDataArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-export type ImageAltTitleFileFieldFocalPointArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-export type ImageAltTitleFileFieldResponsiveImageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  imgixParams?: InputMaybe<ImgixParams>;
-  locale?: InputMaybe<SiteLocale>;
-  sizes?: InputMaybe<Scalars['String']>;
-};
-
-
-export type ImageAltTitleFileFieldTitleArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-export type ImageAltTitleFileFieldUrlArgs = {
-  imgixParams?: InputMaybe<ImgixParams>;
 };
 
 export type ImageFileField = FileFieldInterface & {
@@ -4289,6 +4173,33 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
+/** Block of type Other video resource (other_video_resource) */
+export type OtherVideoResourceRecord = RecordInterface & {
+  __typename?: 'OtherVideoResourceRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  coverImage: FileField;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+
+/** Block of type Other video resource (other_video_resource) */
+export type OtherVideoResourceRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Block of type Page link (page_link) */
 export type PageLinkRecord = RecordInterface & {
   __typename?: 'PageLinkRecord';
@@ -4605,33 +4516,6 @@ export type PlanRecord_SeoMetaTagsArgs = {
 /** Record of type Plan (plan) */
 export type PlanRecordBullets2222Args = {
   markdown?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** Block of type Plan value (plan_value) */
-export type PlanValueRecord = RecordInterface & {
-  __typename?: 'PlanValueRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ItemId'];
-  plan: PlanRecord;
-  updatedAt: Scalars['DateTime'];
-  value?: Maybe<Scalars['String']>;
-};
-
-
-/** Block of type Plan value (plan_value) */
-export type PlanValueRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
 };
 
 export type PluginAuthorModelFilter = {
@@ -5233,7 +5117,6 @@ export type PricingHintRecord = RecordInterface & {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   name?: Maybe<Scalars['String']>;
-  plans: Array<PlanValueRecord>;
   position?: Maybe<Scalars['IntType']>;
   updatedAt: Scalars['DateTime'];
 };
@@ -5438,8 +5321,6 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allShowcaseProjectsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allSinksMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
   _allSuccessStoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSuccessStoryTagsMeta: CollectionMetadata;
@@ -5455,6 +5336,8 @@ export type Query = {
   _allTutorialsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>;
+  /** Returns meta information regarding a record collection */
+  _allVideoTutorialsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allWebinarSpeakersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -5526,8 +5409,6 @@ export type Query = {
   /** Returns a collection of records */
   allShowcaseProjects: Array<ShowcaseProjectRecord>;
   /** Returns a collection of records */
-  allSinks: Array<SinkRecord>;
-  /** Returns a collection of records */
   allSuccessStories: Array<SuccessStoryRecord>;
   /** Returns a collection of records */
   allSuccessStoryTags: Array<SuccessStoryTagRecord>;
@@ -5543,6 +5424,8 @@ export type Query = {
   allTutorials: Array<TutorialRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
+  /** Returns a collection of records */
+  allVideoTutorials: Array<VideoTutorialRecord>;
   /** Returns a collection of records */
   allWebinarSpeakers: Array<WebinarSpeakerRecord>;
   /** Returns a collection of records */
@@ -5626,8 +5509,6 @@ export type Query = {
   /** Returns a specific record */
   showcaseProject?: Maybe<ShowcaseProjectRecord>;
   /** Returns a specific record */
-  sink?: Maybe<SinkRecord>;
-  /** Returns a specific record */
   successStory?: Maybe<SuccessStoryRecord>;
   /** Returns a specific record */
   successStoryTag?: Maybe<SuccessStoryTagRecord>;
@@ -5645,6 +5526,8 @@ export type Query = {
   upload?: Maybe<FileField>;
   /** Returns the single instance record */
   useCasesPage?: Maybe<UseCasesPageRecord>;
+  /** Returns a specific record */
+  videoTutorial?: Maybe<VideoTutorialRecord>;
   /** Returns a specific record */
   webinar?: Maybe<WebinarRecord>;
   /** Returns a specific record */
@@ -5895,14 +5778,6 @@ export type Query_AllShowcaseProjectsMetaArgs = {
 
 
 /** The query root for this schema */
-export type Query_AllSinksMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SinkModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
 export type Query_AllSuccessStoriesMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SuccessStoryModelFilter>;
@@ -5961,6 +5836,14 @@ export type Query_AllTutorialsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllUploadsMetaArgs = {
   filter?: InputMaybe<UploadFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllVideoTutorialsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<VideoTutorialModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -6334,17 +6217,6 @@ export type QueryAllShowcaseProjectsArgs = {
 
 
 /** The query root for this schema */
-export type QueryAllSinksArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SinkModelFilter>;
-  first?: InputMaybe<Scalars['IntType']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SinkModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']>;
-};
-
-
-/** The query root for this schema */
 export type QueryAllSuccessStoriesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SuccessStoryModelFilter>;
@@ -6428,6 +6300,17 @@ export type QueryAllUploadsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllVideoTutorialsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<VideoTutorialModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<VideoTutorialModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -6792,15 +6675,6 @@ export type QueryShowcaseProjectArgs = {
 
 
 /** The query root for this schema */
-export type QuerySinkArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<SinkModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<SinkModelOrderBy>>>;
-};
-
-
-/** The query root for this schema */
 export type QuerySuccessStoryArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SuccessStoryModelFilter>;
@@ -6876,6 +6750,15 @@ export type QueryUploadArgs = {
 export type QueryUseCasesPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryVideoTutorialArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<VideoTutorialModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<VideoTutorialModelOrderBy>>>;
 };
 
 
@@ -7373,160 +7256,6 @@ export type ShowcaseProjectRecord = RecordInterface & {
 /** Record of type Project for the showcase (showcase_project) */
 export type ShowcaseProjectRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
-};
-
-export type SinkModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<SinkModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  asset?: InputMaybe<FileFilter>;
-  assetVideo?: InputMaybe<FileFilter>;
-  boolean?: InputMaybe<BooleanFilter>;
-  color?: InputMaybe<ColorFilter>;
-  createdAt?: InputMaybe<CreatedAtFilter>;
-  date?: InputMaybe<DateFilter>;
-  datetime?: InputMaybe<DateTimeFilter>;
-  gallery?: InputMaybe<GalleryFilter>;
-  galleryVideo?: InputMaybe<GalleryFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  integer?: InputMaybe<IntegerFilter>;
-  json?: InputMaybe<JsonFilter>;
-  location?: InputMaybe<LatLonFilter>;
-  multipleLinksMany?: InputMaybe<LinksFilter>;
-  multipleLinksOne?: InputMaybe<LinksFilter>;
-  number?: InputMaybe<FloatFilter>;
-  seo?: InputMaybe<SeoFilter>;
-  single?: InputMaybe<StringFilter>;
-  singleLinkMany?: InputMaybe<LinkFilter>;
-  singleLinkOne?: InputMaybe<LinkFilter>;
-  slug?: InputMaybe<SlugFilter>;
-  structuredTextMany?: InputMaybe<StructuredTextFilter>;
-  structuredTextOne?: InputMaybe<StructuredTextFilter>;
-  text?: InputMaybe<TextFilter>;
-  updatedAt?: InputMaybe<UpdatedAtFilter>;
-  video?: InputMaybe<VideoFilter>;
-};
-
-export type SinkModelModularContentField = CloneButtonFormRecord | CodesandboxEmbedBlockRecord;
-
-export type SinkModelMultipleLinksManyField = AuthorRecord | BlogPostRecord;
-
-export enum SinkModelOrderBy {
-  CreatedAtAsc = '_createdAt_ASC',
-  CreatedAtDesc = '_createdAt_DESC',
-  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
-  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
-  IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC',
-  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
-  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
-  PublishedAtAsc = '_publishedAt_ASC',
-  PublishedAtDesc = '_publishedAt_DESC',
-  StatusAsc = '_status_ASC',
-  StatusDesc = '_status_DESC',
-  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
-  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  UpdatedAtAsc = '_updatedAt_ASC',
-  UpdatedAtDesc = '_updatedAt_DESC',
-  BooleanAsc = 'boolean_ASC',
-  BooleanDesc = 'boolean_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
-  DatetimeAsc = 'datetime_ASC',
-  DatetimeDesc = 'datetime_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  IntegerAsc = 'integer_ASC',
-  IntegerDesc = 'integer_DESC',
-  NumberAsc = 'number_ASC',
-  NumberDesc = 'number_DESC',
-  SingleAsc = 'single_ASC',
-  SingleDesc = 'single_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
-
-export type SinkModelSingleLinkManyField = AuthorRecord | BlogPostRecord;
-
-export type SinkModelStructuredTextManyBlocksField = DocCalloutRecord | DocGroupPageRecord;
-
-export type SinkModelStructuredTextManyField = {
-  __typename?: 'SinkModelStructuredTextManyField';
-  blocks: Array<SinkModelStructuredTextManyBlocksField>;
-  links: Array<SinkModelStructuredTextManyLinksField>;
-  value: Scalars['JsonField'];
-};
-
-export type SinkModelStructuredTextManyLinksField = AuthorRecord | BlogPostRecord;
-
-export type SinkModelStructuredTextOneField = {
-  __typename?: 'SinkModelStructuredTextOneField';
-  blocks: Array<ClientRecord>;
-  links: Array<BlogPostRecord>;
-  value: Scalars['JsonField'];
-};
-
-/** Record of type Sink (sink) */
-export type SinkRecord = RecordInterface & {
-  __typename?: 'SinkRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  asset: ImageAltTitleFileField;
-  assetVideo: VideoFileField;
-  boolean?: Maybe<Scalars['BooleanType']>;
-  color: ColorField;
-  createdAt: Scalars['DateTime'];
-  date: Scalars['Date'];
-  datetime: Scalars['DateTime'];
-  gallery: Array<ImageFileField>;
-  galleryVideo: Array<VideoFileField>;
-  id: Scalars['ItemId'];
-  integer: Scalars['IntType'];
-  json: Scalars['JsonField'];
-  location: LatLonField;
-  modularContent: Array<SinkModelModularContentField>;
-  multipleLinksMany: Array<SinkModelMultipleLinksManyField>;
-  multipleLinksOne: Array<AuthorRecord>;
-  number: Scalars['FloatType'];
-  seo?: Maybe<SeoField>;
-  single: Scalars['String'];
-  singleLinkMany: SinkModelSingleLinkManyField;
-  singleLinkOne: BlogPostRecord;
-  slug: Scalars['String'];
-  structuredTextMany: SinkModelStructuredTextManyField;
-  structuredTextOne: SinkModelStructuredTextOneField;
-  text: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  video: VideoField;
-};
-
-
-/** Record of type Sink (sink) */
-export type SinkRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Sink (sink) */
-export type SinkRecordTextArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Site = {
@@ -8496,6 +8225,32 @@ export type TutorialRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type Tutorial Video (tutorial_video) */
+export type TutorialVideoRecord = RecordInterface & {
+  __typename?: 'TutorialVideoRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  tutorials: Array<VideoTutorialRecord>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Block of type Tutorial Video (tutorial_video) */
+export type TutorialVideoRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by upload type */
 export type TypeFilter = {
   /** Search uploads with the specified type */
@@ -8995,12 +8750,6 @@ export type VideoFileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
-/** Specifies how to filter Video fields */
-export type VideoFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>;
-};
-
 export enum VideoMp4Res {
   High = 'high',
   Low = 'low',
@@ -9030,6 +8779,82 @@ export type VideoRecord = RecordInterface & {
 
 /** Block of type YouTube/Vimeo embed (video) */
 export type VideoRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type VideoTutorialModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<VideoTutorialModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  showInDocsHomepage?: InputMaybe<BooleanFilter>;
+  title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum VideoTutorialModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  ShowInDocsHomepageAsc = 'showInDocsHomepage_ASC',
+  ShowInDocsHomepageDesc = 'showInDocsHomepage_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type VideoTutorialModelVideoTutorialResourceField = OtherVideoResourceRecord | YoutubeVideoResourceRecord;
+
+/** Record of type Video Tutorial (video_tutorial) */
+export type VideoTutorialRecord = RecordInterface & {
+  __typename?: 'VideoTutorialRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  showInDocsHomepage?: Maybe<Scalars['BooleanType']>;
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  videoTutorialResource: Array<VideoTutorialModelVideoTutorialResourceField>;
+};
+
+
+/** Record of type Video Tutorial (video_tutorial) */
+export type VideoTutorialRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -9301,6 +9126,32 @@ export type WebsiteRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type YouTube video resource (youtube_video_resource) */
+export type YoutubeVideoResourceRecord = RecordInterface & {
+  __typename?: 'YoutubeVideoResourceRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  updatedAt: Scalars['DateTime'];
+  video: VideoField;
+};
+
+
+/** Block of type YouTube video resource (youtube_video_resource) */
+export type YoutubeVideoResourceRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type FocalPoint = {
   __typename?: 'focalPoint';
   x: Scalars['FloatType'];
@@ -9310,28 +9161,17 @@ export type FocalPoint = {
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { __typename?: 'Query', sink?: { __typename?: 'SinkRecord', boolean?: boolean | null, date: string, datetime: string, id: string, integer: number, json: unkown, number: number, single: string, slug: string, text: string, asset: { __typename?: 'ImageAltTitleFileField', alt: string, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null }, gallery: Array<{ __typename?: 'ImageFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null }>, assetVideo: { __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } }, galleryVideo: Array<{ __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } }>, color: { __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }, location: { __typename?: 'LatLonField', latitude: number, longitude: number }, modularContent: Array<{ __typename?: 'CloneButtonFormRecord', id: string } | { __typename?: 'CodesandboxEmbedBlockRecord', id: string }>, multipleLinksMany: Array<{ __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }>, multipleLinksOne: Array<{ __typename?: 'AuthorRecord', id: string }>, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null } | null } | null, singleLinkMany: { __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }, singleLinkOne: { __typename?: 'BlogPostRecord', id: string }, structuredTextMany: { __typename?: 'SinkModelStructuredTextManyField', value: unkown, blocks: Array<{ __typename?: 'DocCalloutRecord', id: string } | { __typename?: 'DocGroupPageRecord', id: string }>, links: Array<{ __typename?: 'AuthorRecord', id: string } | { __typename?: 'BlogPostRecord', id: string }> }, structuredTextOne: { __typename?: 'SinkModelStructuredTextOneField', value: unkown, blocks: Array<{ __typename?: 'ClientRecord', id: string }>, links: Array<{ __typename?: 'BlogPostRecord', id: string }> }, video: { __typename?: 'VideoField', height: number, provider: string, providerUid: string, thumbnailUrl: string, title: string, url: string, width: number } } | null };
+export type HomeQuery = { __typename?: 'Query', allAuthors: Array<{ __typename?: 'AuthorRecord', id: string, name: string, avatar: { __typename?: 'ImageFileField', responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } } }> };
 
-export type VideoFieldFragment = { __typename?: 'VideoField', height: number, provider: string, providerUid: string, thumbnailUrl: string, title: string, url: string, width: number };
+type ResponsiveImage_FileField_Fragment = { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null };
 
-type FileField_FileField_Fragment = { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+type ResponsiveImage_ImageFileField_Fragment = { __typename?: 'ImageFileField', responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } };
 
-type FileField_ImageAltTitleFileField_Fragment = { __typename?: 'ImageAltTitleFileField', alt: string, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+type ResponsiveImage_TitleFileField_Fragment = { __typename?: 'TitleFileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null };
 
-type FileField_ImageFileField_Fragment = { __typename?: 'ImageFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height: number, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width: number, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint: { __typename?: 'focalPoint', x: number, y: number }, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number }, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+type ResponsiveImage_VideoFileField_Fragment = { __typename?: 'VideoFileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null };
 
-type FileField_TitleFileField_Fragment = { __typename?: 'TitleFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title: string, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null };
+export type ResponsiveImageFragment = ResponsiveImage_FileField_Fragment | ResponsiveImage_ImageFileField_Fragment | ResponsiveImage_TitleFileField_Fragment | ResponsiveImage_VideoFileField_Fragment;
 
-type FileField_VideoFileField_Fragment = { __typename?: 'VideoFileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } };
-
-export type FileFieldFragment = FileField_FileField_Fragment | FileField_ImageAltTitleFileField_Fragment | FileField_ImageFileField_Fragment | FileField_TitleFileField_Fragment | FileField_VideoFileField_Fragment;
-
-export type ColorFieldFragment = { __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number };
-
-export type SeoFieldFragment = { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, author?: string | null, basename: string, blurUpThumb?: string | null, blurhash?: string | null, copyright?: string | null, customData: Record<string, unknown>, exifInfo: Record<string, unknown>, filename: string, format: string, height?: number | null, id: string, md5: string, mimeType: string, notes?: string | null, size: number, smartTags: Array<string>, tags: Array<string>, title?: string | null, url: string, width?: number | null, colors: Array<{ __typename?: 'ColorField', alpha: number, blue: number, red: number, green: number }>, focalPoint?: { __typename?: 'focalPoint', x: number, y: number } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: number, base64?: string | null, bgColor?: string | null, height: number, sizes: string, src: string, srcSet: string, title?: string | null, webpSrcSet: string, width: number } | null, video?: { __typename?: 'UploadVideoField', duration?: number | null, framerate?: number | null, mp4Url?: string | null, muxAssetId: string, muxPlaybackId: string, streamingUrl: string, thumbnailUrl: string } | null } | null };
-
-export const VideoFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"videoField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"provider"}},{"kind":"Field","name":{"kind":"Name","value":"providerUid"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailUrl"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]} as unknown as DocumentNode<VideoFieldFragment, unknown>;
-export const ColorFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"colorField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ColorField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alpha"}},{"kind":"Field","name":{"kind":"Name","value":"blue"}},{"kind":"Field","name":{"kind":"Name","value":"red"}},{"kind":"Field","name":{"kind":"Name","value":"green"}}]}}]} as unknown as DocumentNode<ColorFieldFragment, unknown>;
-export const FileFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"fileField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FileFieldInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"basename"}},{"kind":"Field","name":{"kind":"Name","value":"blurUpThumb"}},{"kind":"Field","name":{"kind":"Name","value":"blurhash"}},{"kind":"Field","name":{"kind":"Name","value":"colors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"colorField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"customData"}},{"kind":"Field","name":{"kind":"Name","value":"exifInfo"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"focalPoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"x"}},{"kind":"Field","name":{"kind":"Name","value":"y"}}]}},{"kind":"Field","name":{"kind":"Name","value":"format"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"md5"}},{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"notes"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"smartTags"}},{"kind":"Field","name":{"kind":"Name","value":"tags"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"framerate"}},{"kind":"Field","name":{"kind":"Name","value":"mp4Url"}},{"kind":"Field","name":{"kind":"Name","value":"muxAssetId"}},{"kind":"Field","name":{"kind":"Name","value":"muxPlaybackId"}},{"kind":"Field","name":{"kind":"Name","value":"streamingUrl"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},...ColorFieldFragmentDoc.definitions]} as unknown as DocumentNode<FileFieldFragment, unknown>;
-export const SeoFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"seoField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SeoField"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"twitterCard"}}]}},...FileFieldFragmentDoc.definitions]} as unknown as DocumentNode<SeoFieldFragment, unknown>;
-export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"asset"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"assetVideo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"galleryVideo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"fileField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"boolean"}},{"kind":"Field","name":{"kind":"Name","value":"color"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"colorField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"datetime"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"integer"}},{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"latitude"}},{"kind":"Field","name":{"kind":"Name","value":"longitude"}}]}},{"kind":"Field","name":{"kind":"Name","value":"modularContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multipleLinksMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multipleLinksOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"AuthorRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"seoField"}}]}},{"kind":"Field","name":{"kind":"Name","value":"single"}},{"kind":"Field","name":{"kind":"Name","value":"singleLinkMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"singleLinkOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"structuredTextMany"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RecordInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"structuredTextOne"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"videoField"}}]}}]}}]}},...FileFieldFragmentDoc.definitions,...ColorFieldFragmentDoc.definitions,...SeoFieldFragmentDoc.definitions,...VideoFieldFragmentDoc.definitions]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
+export const ResponsiveImageFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"responsiveImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FileFieldInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"100"}},{"kind":"ObjectField","name":{"kind":"Name","value":"h"},"value":{"kind":"IntValue","value":"100"}},{"kind":"ObjectField","name":{"kind":"Name","value":"fit"},"value":{"kind":"EnumValue","value":"crop"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]} as unknown as DocumentNode<ResponsiveImageFragment, unknown>;
+export const HomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Home"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"responsiveImage"}}]}}]}}]}},...ResponsiveImageFragmentDoc.definitions]} as unknown as DocumentNode<HomeQuery, HomeQueryVariables>;
